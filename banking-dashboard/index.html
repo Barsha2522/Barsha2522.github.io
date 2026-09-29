@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retail Banking — Customer Experience Dashboard | Barsha Sitoula</title>
+<meta name="description" content="Interactive dashboard exploring customer experience in retail banking. Built by Barsha Sitoula.">
+<meta property="og:title" content="Retail Banking — Customer Experience Dashboard">
+<meta property="og:description" content="Interactive dashboard: NPS, satisfaction trends, and channel feedback in retail banking. Built by Barsha Sitoula.">
+<meta property="og:image" content="https://barsha2522.github.io/portrait.png">
+<meta property="og:type" content="website">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#f7f7f5; --card:#ffffff; --ink:#1c1c1c; --muted:#5f5f5f;
+    --line:#e8e8e4; --accent:#0e6e6e; --accent-soft:#e9f4f3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 24px 60px}
+  header.top{background:#fff;border-bottom:1px solid var(--line);padding:34px 0 26px;margin-bottom:28px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:32px;letter-spacing:-.02em;margin-bottom:6px}
+  header.top p{color:var(--muted);font-size:15.5px;max-width:640px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;background:var(--accent-soft);color:#0c5a5a;
+         padding:4px 12px;border-radius:999px;margin-top:10px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .kpi .v{font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--accent)}
+  .kpi .l{font-size:13px;color:var(--muted);margin-top:2px}
+  .kpi .d{font-size:12px;font-weight:700;margin-top:6px}
+  .up{color:#1a7f37}.down{color:#b42318}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;align-items:center}
+  .filters span{font-size:13.5px;color:var(--muted);font-weight:600;margin-right:4px}
+  .fbtn{font-size:13.5px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink);
+        padding:8px 16px;border-radius:999px;cursor:pointer}
+  .fbtn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  .grid .wide{grid-column:1/-1}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .card h3{font-size:16px;margin-bottom:2px}
+  .card .sub{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .chartbox{position:relative;height:280px}
+  .insights{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:14px}
+  .insights h3{font-size:16px;margin-bottom:10px}
+  .insights ul{margin-left:18px;color:var(--muted);font-size:14.5px}
+  .insights li{margin-bottom:8px}
+  footer{text-align:center;color:var(--muted);font-size:13.5px;margin-top:36px}
+  footer a{color:var(--accent);font-weight:600;text-decoration:none}
+  @media(max-width:720px){.kpis{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap" style="padding-bottom:0">
+    <div class="kicker">Interactive Project · Data Analytics</div>
+    <h1>Retail Banking — Customer Experience Dashboard</h1>
+    <p>Exploring Net Promoter Score, satisfaction trends, and channel feedback across regions — the same themes as my graduate capstone research on AI and customer experience in retail banking.</p>
+    <span class="badge">Sample data for demonstration</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="filters">
+    <span>Region:</span>
+    <button class="fbtn active" data-region="all">All regions</button>
+    <button class="fbtn" data-region="na">North America</button>
+    <button class="fbtn" data-region="eu">Europe</button>
+    <button class="fbtn" data-region="asia">Asia</button>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="kpiNps">42</div><div class="l">Net Promoter Score</div><div class="d up">▲ 6 pts vs last year</div></div>
+    <div class="kpi"><div class="v" id="kpiSat">4.3</div><div class="l">Avg. satisfaction / 5</div><div class="d up">▲ 0.2 vs last year</div></div>
+    <div class="kpi"><div class="v" id="kpiResp">312</div><div class="l">Survey responses</div><div class="d" style="color:var(--muted)">3 regions</div></div>
+    <div class="kpi"><div class="v">68%</div><div class="l">Prefer digital channels</div><div class="d up">▲ 9 pts vs last year</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card wide">
+      <h3>Satisfaction trend — 12 months</h3>
+      <div class="sub">Average satisfaction score (out of 5) by month</div>
+      <div class="chartbox"><canvas id="trendChart"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>NPS by region</h3>
+      <div class="sub">Net Promoter Score comparison</div>
+      <div class="chartbox"><canvas id="npsChart"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>Feedback by channel</h3>
+      <div class="sub">Where customers shared feedback</div>
+      <div class="chartbox"><canvas id="channelChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="insights">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li><b>Digital leads:</b> mobile app and online banking together account for over two-thirds of feedback — and score the highest satisfaction.</li>
+      <li><b>Regional gap:</b> North America leads on NPS while Asia shows the fastest improvement trend over the last 12 months.</li>
+      <li><b>Opportunity:</b> call-center feedback skews negative, suggesting the biggest service-design win is in assisted channels.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Built by <a href="https://barsha2522.github.io/">Barsha Sitoula</a> · Data Analyst &amp; Business Intelligence · Sample data for demonstration
+  </footer>
+</div>
+
+<script>
+const ACCENT = '#0e6e6e', ACCENT_LT = 'rgba(14,110,110,.12)', GREY = '#c9c9c4';
+
+const data = {
+  all:  { nps: 42, sat: '4.3', resp: 312,
+          trend: [3.9,4.0,4.0,4.1,4.1,4.2,4.2,4.2,4.3,4.3,4.4,4.3] },
+  na:   { nps: 51, sat: '4.5', resp: 128,
+          trend: [4.1,4.2,4.2,4.3,4.3,4.4,4.4,4.4,4.5,4.5,4.6,4.5] },
+  eu:   { nps: 39, sat: '4.2', resp: 104,
+          trend: [3.8,3.9,3.9,4.0,4.0,4.1,4.1,4.2,4.2,4.2,4.3,4.2] },
+  asia: { nps: 34, sat: '4.1', resp: 80,
+          trend: [3.6,3.7,3.7,3.8,3.9,4.0,4.0,4.1,4.1,4.2,4.2,4.1] }
+};
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+Chart.defaults.font.family = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif';
+
+const trendChart = new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: { labels: months, datasets: [{
+    label: 'Avg. satisfaction', data: data.all.trend,
+    borderColor: ACCENT, backgroundColor: ACCENT_LT, fill: true, tension: .35, pointRadius: 3
+  }]},
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { y: { min: 3.4, max: 5 } },
+    plugins: { legend: { display: false } } }
+});
+
+const npsChart = new Chart(document.getElementById('npsChart'), {
+  type: 'bar',
+  data: { labels: ['North America','Europe','Asia'],
+          datasets: [{ data: [51,39,34],
+            backgroundColor: [ACCENT,'#3a9e9e','#8fd0d0'], borderRadius: 6 }]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } } }
+});
+
+new Chart(document.getElementById('channelChart'), {
+  type: 'doughnut',
+  data: { labels: ['Mobile app','Online banking','Branch','Call center','ATM'],
+          datasets: [{ data: [38,30,16,9,7],
+            backgroundColor: [ACCENT,'#3a9e9e','#8fd0d0','#d8d8d3','#efefec'],
+            borderWidth: 2, borderColor: '#fff' }]},
+  options: { responsive: true, maintainAspectRatio: false, cutout: '58%',
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14 } } } }
+});
+
+document.querySelectorAll('.fbtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const r = btn.dataset.region, d = data[r];
+    document.getElementById('kpiNps').textContent = d.nps;
+    document.getElementById('kpiSat').textContent = d.sat;
+    document.getElementById('kpiResp').textContent = d.resp;
+    trendChart.data.datasets[0].data = d.trend;
+    trendChart.update();
+  });
+});
+</script>
+</body>
+</html>
