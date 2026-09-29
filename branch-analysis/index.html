@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Branch Operations — Business Analysis Case Study | Barsha Sitoula</title>
+<meta name="description" content="Business analysis case study: process improvement and cost-benefit analysis for retail branch operations. By Barsha Sitoula.">
+<meta property="og:title" content="Branch Operations — Business Analysis Case Study">
+<meta property="og:description" content="Process improvement, KPI scorecard, and what-if savings analysis for retail banking branches. By Barsha Sitoula.">
+<meta property="og:image" content="https://barsha2522.github.io/portrait.png">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#f7f7f5; --card:#fff; --ink:#1c1c1c; --muted:#5f5f5f;
+    --line:#e8e8e4; --accent:#0e6e6e; --accent-soft:#e9f4f3;
+    --green:#1a7f37; --amber:#9a6700; --red:#b42318;
+    --green-bg:#eaf6ec; --amber-bg:#fdf3e3; --red-bg:#fdecea;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 60px}
+  header.top{background:#fff;border-bottom:1px solid var(--line);padding:34px 0 26px;margin-bottom:28px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:32px;letter-spacing:-.02em;margin-bottom:6px}
+  header.top p{color:var(--muted);font-size:15.5px;max-width:660px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;background:var(--accent-soft);color:#0c5a5a;
+         padding:4px 12px;border-radius:999px;margin-top:10px}
+  h2{font-size:22px;letter-spacing:-.01em;margin:34px 0 6px}
+  .secsub{color:var(--muted);font-size:14.5px;margin-bottom:16px;max-width:640px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:14px}
+  .card h3{font-size:16px;margin-bottom:8px}
+
+  /* Scorecard */
+  .score{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .kpi{display:flex;gap:14px;align-items:flex-start}
+  .dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:5px}
+  .g{background:var(--green)}.a{background:#d97706}.r{background:var(--red)}
+  .kpi b{display:block;font-size:15px}
+  .kpi span{font-size:13.5px;color:var(--muted)}
+
+  /* Process */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .proc h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+  .proc ol{margin-left:18px;font-size:14px;color:var(--muted)}
+  .proc li{margin-bottom:8px}
+  .proc.asis h4{color:var(--red)}
+  .proc.tobe h4{color:var(--green)}
+  .arrow{text-align:center;font-size:22px;color:var(--muted);margin:2px 0}
+
+  /* Calculator */
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .slider-row{margin-bottom:18px}
+  .slider-row label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px}
+  .slider-row label output{color:var(--accent)}
+  input[type=range]{width:100%;accent-color:var(--accent)}
+  .results{background:var(--accent-soft);border-radius:12px;padding:22px}
+  .results .big{font-size:34px;font-weight:700;color:#0c5a5a;letter-spacing:-.02em}
+  .results .lbl{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .results .row{display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-top:1px solid #d5e8e6}
+  .results .row b{color:#0c5a5a}
+  .note{font-size:12.5px;color:var(--muted);margin-top:12px}
+
+  .recs{margin:10px 0 0 18px;color:var(--muted);font-size:14.5px}
+  .recs li{margin-bottom:10px}
+  .recs b{color:var(--ink)}
+  footer{text-align:center;color:var(--muted);font-size:13.5px;margin-top:36px}
+  footer a{color:var(--accent);font-weight:600;text-decoration:none}
+  @media(max-width:680px){.score,.cols,.calc{grid-template-columns:1fr}h1{font-size:26px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap" style="padding-bottom:0">
+    <div class="kicker">Case Study · Business Analysis</div>
+    <h1>Branch Operations — Process Improvement Analysis</h1>
+    <p>A business analyst case study: diagnosing service bottlenecks across a retail branch network, redesigning the customer service process, and quantifying the impact — in time, cost, and satisfaction.</p>
+    <span class="badge">Illustrative case · sample figures</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2>1 · The problem</h2>
+  <p class="secsub">Branch transaction data showed rising wait times and falling satisfaction, concentrated in routine counter transactions that could be served digitally.</p>
+  <div class="card">
+    <div class="score">
+      <div class="kpi"><span class="dot r"></span><div><b>Avg. wait time: 14 min</b><span>Target ≤ 8 min · worsening 3 quarters in a row</span></div></div>
+      <div class="kpi"><span class="dot a"></span><div><b>Counter transactions: 58%</b><span>Routine deposits &amp; withdrawals still handled in person</span></div></div>
+      <div class="kpi"><span class="dot a"></span><div><b>Staff utilization: 91%</b><span>Above the 85% healthy threshold — burnout risk</span></div></div>
+      <div class="kpi"><span class="dot g"></span><div><b>Digital adoption: 42%</b><span>Growing, but well below the 65% target</span></div></div>
+    </div>
+  </div>
+
+  <h2>2 · Process redesign: as-is → to-be</h2>
+  <p class="secsub">Mapping the current customer journey exposed three handoffs that added no value — each became a redesign target.</p>
+  <div class="cols">
+    <div class="card proc asis">
+      <h4>As-is</h4>
+      <ol>
+        <li>Customer takes a ticket and waits in a single queue</li>
+        <li>Teller verifies identity manually at the counter</li>
+        <li>Customer re-queues for a second transaction type</li>
+        <li>Paper receipt filed manually end-of-day</li>
+      </ol>
+    </div>
+    <div class="card proc tobe">
+      <h4>To-be</h4>
+      <ol>
+        <li>Pre-registration kiosk sorts customers by need on arrival</li>
+        <li>Single-visit handling — one staff member, one counter</li>
+        <li>Routine transactions guided to assisted digital stations</li>
+        <li>Digital receipts auto-filed; staff freed for advisory work</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2>3 · What-if impact simulator</h2>
+  <p class="secsub">Move the sliders to see how handling-time reduction and digital migration translate into annual savings for a 24-branch network. This is the same cost-benefit framing I use in real stakeholder reviews.</p>
+  <div class="card">
+    <div class="calc">
+      <div>
+        <div class="slider-row">
+          <label>Avg. handling-time reduction <output id="oTime">20%</output></label>
+          <input type="range" id="sTime" min="0" max="40" value="20">
+        </div>
+        <div class="slider-row">
+          <label>Routine transactions shifted to digital <output id="oDig">15%</output></label>
+          <input type="range" id="sDig" min="0" max="30" value="15">
+        </div>
+        <div class="slider-row">
+          <label>Branches in network <output id="oBr">24</output></label>
+          <input type="range" id="sBr" min="5" max="60" value="24">
+        </div>
+        <p class="note">Assumptions: 320 counter transactions/day/branch · 6.5 min avg. handling time · $0.85 cost per staff-minute · 260 working days/year.</p>
+      </div>
+      <div class="results">
+        <div class="lbl">Projected annual impact</div>
+        <div class="big" id="rSave">$1.06M</div>
+        <div class="lbl">estimated cost savings / year</div>
+        <div class="row"><span>Staff hours freed</span><b id="rHours">—</b></div>
+        <div class="row"><span>Wait-time reduction</span><b id="rWait">—</b></div>
+        <div class="row"><span>Satisfaction lift (est.)</span><b id="rSat">—</b></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>4 · Recommendations</h2>
+  <div class="card">
+    <ul class="recs">
+      <li><b>Pilot in 4 branches first</b> — validate the kiosk triage and single-visit flow before network rollout; measure wait time weekly.</li>
+      <li><b>Retrain, don't reduce</b> — redeploy freed teller hours to advisory and onboarding conversations, protecting morale and service quality.</li>
+      <li><b>Track the migration funnel</b> — weekly dashboard on digital-shift rate per branch; coach the bottom quartile with playbooks from top performers.</li>
+      <li><b>Close the loop with customers</b> — post-visit SMS survey for the first 90 days to confirm satisfaction actually follows the time savings.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Built by <a href="https://barsha2522.github.io/">Barsha Sitoula</a> · Business Analyst &amp; BI Professional · Illustrative case with sample figures
+  </footer>
+</div>
+
+<script>
+const sTime=document.getElementById('sTime'), sDig=document.getElementById('sDig'), sBr=document.getElementById('sBr');
+function fmt(n){return n>=1e6?'$'+(n/1e6).toFixed(2)+'M':'$'+Math.round(n/1e3)+'K';}
+function update(){
+  const t=+sTime.value, d=+sDig.value, b=+sBr.value;
+  document.getElementById('oTime').textContent=t+'%';
+  document.getElementById('oDig').textContent=d+'%';
+  document.getElementById('oBr').textContent=b;
+  // minutes saved per transaction from handling-time reduction + digital shift (digital ~1.5 min assisted)
+  const perTxn = 6.5*(t/100) + (6.5-1.5)*(d/100);
+  const txnPerYear = 320*260*b;
+  const minsSaved = perTxn*txnPerYear;
+  const dollars = minsSaved*0.85;
+  const hours = minsSaved/60;
+  document.getElementById('rSave').textContent=fmt(dollars);
+  document.getElementById('rHours').textContent=Math.round(hours).toLocaleString()+' hrs';
+  document.getElementById('rWait').textContent='−'+Math.round(14*(perTxn/6.5))+' min avg. wait';
+  document.getElementById('rSat').textContent='+'+(perTxn/6.5*0.6).toFixed(1)+' pts (est.)';
+}
+[sTime,sDig,sBr].forEach(s=>s.addEventListener('input',update));
+update();
+</script>
+</body>
+</html>
