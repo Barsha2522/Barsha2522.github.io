@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barsha Sitoula | Data Analyst</title>
+<meta name="description" content="Barsha Sitoula — Data Analyst and Business Intelligence professional. I turn complex business data into clear decisions.">
+<meta property="og:title" content="Barsha Sitoula | Data Analyst">
+<meta property="og:description" content="Data Analyst and Business Intelligence professional. I turn complex business data into clear decisions.">
+<meta property="og:image" content="https://barsha2522.github.io/portrait.png">
+<meta property="og:url" content="https://barsha2522.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://barsha2522.github.io/portrait.png">
+<style>
+  :root{
+    --bg:#ffffff;
+    --soft:#f7f7f5;
+    --ink:#1c1c1c;
+    --muted:#5f5f5f;
+    --line:#e8e8e4;
+    --accent:#0e6e6e;
+    --accent-soft:#e9f4f3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);z-index:50}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;font-size:17px;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
+  .brand span{color:var(--accent)}
+  .links{display:flex;gap:22px;align-items:center}
+  .links a{font-size:14px;color:var(--muted);text-decoration:none}
+  .links a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--ink);color:#fff!important;font-weight:600;
+       padding:8px 18px;border-radius:999px;font-size:14px;text-decoration:none}
+  .btn:hover{background:var(--accent)}
+  .btn-outline{background:#fff;color:var(--ink)!important;border:1px solid var(--line)}
+  .btn-outline:hover{border-color:var(--ink)}
+
+  /* Hero */
+  .hero{padding:72px 0 56px;display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start}
+  .hero img{width:200px;height:250px;object-fit:cover;border-radius:14px;
+            border:1px solid var(--line)}
+  .kicker{font-size:12.5px;font-weight:700;letter-spacing:.14em;color:var(--accent);
+          text-transform:uppercase;margin-bottom:10px}
+  h1{font-size:44px;line-height:1.12;letter-spacing:-.02em;margin-bottom:14px}
+  .lede{font-size:17.5px;color:var(--muted);max-width:560px;margin-bottom:22px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;font-weight:600;background:var(--soft);border:1px solid var(--line);
+        padding:6px 13px;border-radius:999px;color:var(--ink)}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+         border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 0}
+  .stat{background:#fff;padding:20px 18px}
+  .stat b{display:block;font-size:22px;letter-spacing:-.01em}
+  .stat span{font-size:13px;color:var(--muted)}
+
+  /* Sections */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  .sec-label{font-size:12.5px;font-weight:700;letter-spacing:.14em;color:var(--muted);
+             text-transform:uppercase;margin-bottom:8px}
+  h2{font-size:30px;letter-spacing:-.02em;margin-bottom:16px}
+  section p.body{color:var(--muted);font-size:16.5px;max-width:640px;margin-bottom:28px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff}
+  .card h3{font-size:17px;margin-bottom:6px}
+  .card p{font-size:14.5px;color:var(--muted)}
+  .num{font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:8px}
+
+  .focus{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px}
+  .focus h4{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .focus p{font-size:15px;color:var(--ink)}
+
+  /* Experience */
+  .job{padding:24px 0;border-top:1px solid var(--line)}
+  .job:first-of-type{border-top:none}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .job h3{font-size:18px}
+  .job .role{color:var(--accent);font-weight:600;font-size:14.5px}
+  .job .dates{font-size:13.5px;color:var(--muted);white-space:nowrap}
+  .job ul{margin:10px 0 0 18px;color:var(--muted);font-size:15px}
+  .job li{margin-bottom:6px}
+  .stackline{font-size:13px;color:var(--muted);margin-top:10px}
+  .stackline b{color:var(--ink);font-weight:600}
+
+  /* Lists */
+  .entry{padding:16px 0;border-top:1px solid var(--line)}
+  .entry:first-of-type{border-top:none}
+  .entry h3{font-size:16.5px}
+  .entry .meta{font-size:13.5px;color:var(--muted);margin-bottom:4px}
+  .entry p{font-size:14.5px;color:var(--muted)}
+
+  .cred{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .cred span{font-size:13.5px;background:var(--accent-soft);color:#0c5a5a;
+             padding:6px 13px;border-radius:999px;font-weight:600}
+
+  /* Contact */
+  .contact{text-align:center;padding:72px 0}
+  .contact h2{font-size:32px}
+  .contact p{color:var(--muted);max-width:520px;margin:0 auto 26px;font-size:16.5px}
+  .contact .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+  .contact-lines{font-size:15px;color:var(--muted);line-height:2}
+  .contact-lines a{color:var(--accent);text-decoration:none;font-weight:600}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;
+         font-size:13.5px;color:var(--muted)}
+  footer a{color:var(--muted)}
+
+  @media(max-width:680px){
+    .hero{grid-template-columns:1fr;gap:24px;padding:48px 0 40px}
+    .hero img{width:160px;height:200px}
+    h1{font-size:34px}
+    .stats{grid-template-columns:1fr 1fr}
+    .grid2,.focus{grid-template-columns:1fr}
+    .links a:not(.btn){display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Barsha<span>&nbsp;Sitoula</span></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="Barsha_Sitoula_Resume.pdf" download>Résumé ↓</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="portrait.png" alt="Portrait of Barsha Sitoula">
+    <div>
+      <div class="kicker">Data Analyst · Business Intelligence</div>
+      <h1>Barsha Sitoula</h1>
+      <p class="lede">I turn complex business data into clear decisions — combining analytics, visualization, research, and practical business judgment to make information useful.</p>
+      <div class="chips">
+        <span class="chip">SQL</span><span class="chip">Python</span><span class="chip">R</span>
+        <span class="chip">Power BI</span><span class="chip">Tableau</span>
+        <span class="chip">Advanced Excel</span><span class="chip">SPSS</span>
+        <span class="chip">SAP</span><span class="chip">NVivo</span><span class="chip">Figma</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>3.93</b><span>Graduate GPA</span></div>
+    <div class="stat"><b>2</b><span>Master's degrees</span></div>
+    <div class="stat"><b>Banking</b><span>Operational experience</span></div>
+    <div class="stat"><b>Mixed methods</b><span>Research approach</span></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-label">About me</div>
+    <h2>Analysis grounded in the way organizations actually work.</h2>
+    <p class="body">I'm a data and business intelligence professional with experience spanning banking, higher education, research, and digital projects. My work brings together technical analysis and business context — I use SQL, Python, R, Power BI, Tableau, SPSS, and Excel to explore data, communicate patterns, and support better decisions. I'm especially interested in the intersection of analytics, customer experience, process improvement, and responsible AI.</p>
+    <div class="focus">
+      <div><h4>Primary focus</h4><p>Business intelligence &amp; decision support</p></div>
+      <div><h4>Analysis</h4><p>Cleaning, exploration, modeling, and meaningful visualization</p></div>
+      <div><h4>Research</h4><p>Quantitative and qualitative methods built around real questions</p></div>
+      <div><h4>Approach</h4><p>Practical analysis, clear reporting, useful recommendations</p></div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section>
+    <div class="sec-label">Highlights</div>
+    <h2>From raw information to a useful point of view.</h2>
+    <div class="grid2">
+      <div class="card">
+        <div class="num">01 / RESEARCH</div>
+        <h3>AI &amp; customer experience</h3>
+        <p>Graduate capstone research examined how artificial intelligence shapes customer experience in retail banking through surveys, interviews, and analytical tools.</p>
+      </div>
+      <div class="card">
+        <div class="num">02 / INSIGHT</div>
+        <h3>Dashboards that clarify</h3>
+        <p>Builds visual reporting in Power BI and Tableau to surface patterns, track performance, and make findings easier to act on.</p>
+      </div>
+      <div class="card">
+        <div class="num">03 / PRACTICE</div>
+        <h3>Business-first analysis</h3>
+        <p>Pairs technical work with banking and administrative experience, keeping recommendations connected to customers, workflows, and outcomes.</p>
+      </div>
+      <div class="card">
+        <div class="num">04 / TOOLKIT</div>
+        <h3>End-to-end capability</h3>
+        <p>From data extraction and cleaning (SQL, Python, R, Excel) to statistical analysis (SPSS) and executive-ready dashboards (Power BI, Tableau).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-label">Selected work</div>
+    <h2>Things I've worked on.</h2>
+    <p class="body">Applied analysis across research, banking, and digital experience — using quantitative methods, dashboards, and business reporting.</p>
+
+    <div class="entry">
+      <div class="meta">Interactive project · 2026</div>
+      <h3><a href="banking-dashboard/" style="color:inherit">Retail Banking — Customer Experience Dashboard</a></h3>
+      <p>Interactive dashboard exploring NPS, satisfaction trends, and channel feedback across regions — with region filters and KPI cards. <a href="banking-dashboard/" style="color:var(--accent);font-weight:600">Open the live dashboard →</a></p>
+    </div>
+    <div class="entry">
+      <div class="meta">Case study · 2026</div>
+      <h3><a href="branch-analysis/" style="color:inherit">Branch Operations — Process Improvement Analysis</a></h3>
+      <p>Business analysis case study: KPI scorecard, as-is → to-be process redesign, and a what-if simulator quantifying annual savings. <a href="branch-analysis/" style="color:var(--accent);font-weight:600">Open the case study →</a></p>
+    </div>
+    <div class="entry">
+      <div class="meta">Atlantis University · Dec 2025</div>
+      <h3>AI &amp; Customer Experience in Retail Banking</h3>
+      <p>Graduate capstone examining AI and customer experience in retail banking. 300+ survey responses across the United States, Europe, and Asia. Mediation models with bootstrapped confidence intervals. Power BI dashboards comparing NPS and customer satisfaction across demographics.</p>
+    </div>
+    <div class="entry">
+      <div class="meta">Tribhuvan University · 2021–2023</div>
+      <h3>Internal Audit Effectiveness in Nepalese Commercial Banks</h3>
+      <p>Master's thesis on internal audit effectiveness in Nepalese commercial banks. Multivariate regression in SPSS, hypothesis testing and diagnostics.</p>
+    </div>
+    <div class="entry">
+      <div class="meta">NIC Asia Bank</div>
+      <h3>KPI Dashboards</h3>
+      <p>Dashboard and reporting work covering customer retention, service quality, and financial risk KPIs. Excel and SAP. Compliance reports.</p>
+    </div>
+    <div class="entry">
+      <div class="meta">Intern Protégé Inc.</div>
+      <h3>User Interaction Data Analysis</h3>
+      <p>Excel usability analysis of user interaction data that informed interface improvements.</p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-label">Experience</div>
+    <h2>Where I've worked.</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div><h3>Atlantis University</h3><div class="role">Teaching Assistant / Student Worker · Miami, Florida</div></div>
+        <div class="dates">Jun 2024 — Present</div>
+      </div>
+      <ul>
+        <li>Support instruction and academic operations in a graduate business school environment.</li>
+        <li>Assist with student data, course materials, and program coordination.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><h3>Intern Protégé Inc.</h3><div class="role">Web Development &amp; Data Analyst Intern · California</div></div>
+        <div class="dates">May — Aug 2024</div>
+      </div>
+      <ul>
+        <li>Analyzed user interaction data in Excel to surface usability patterns.</li>
+        <li>Findings informed interface improvements for a better user experience.</li>
+      </ul>
+      <div class="stackline"><b>Stack:</b> Excel, Web Analytics</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><h3>NIC Asia Bank Ltd.</h3><div class="role">Trainee Assistant Executive &amp; Business Data Analyst · Lalitpur, Nepal</div></div>
+        <div class="dates">Jan 2022 — Dec 2023</div>
+      </div>
+      <ul>
+        <li>Built dashboards and reports covering customer retention, service quality, and financial risk KPIs.</li>
+        <li>Prepared compliance reports and supported data-driven operational decisions.</li>
+      </ul>
+      <div class="stackline"><b>Stack:</b> Excel, SAP</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div><h3>Sudarshan Saving &amp; Credit Co-operative Ltd.</h3><div class="role">Representative Executive &amp; Administrative Assistant · Kathmandu, Nepal</div></div>
+        <div class="dates">Jan 2018 — Aug 2021</div>
+      </div>
+      <ul>
+        <li>Managed member-facing operations, records, and administrative workflows.</li>
+        <li>Coordinated reporting and documentation across departments.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section>
+    <div class="sec-label">Research</div>
+    <h2>Questions first. Methods with purpose.</h2>
+    <div class="entry">
+      <div class="meta">2025 · Atlantis University</div>
+      <h3>Graduate Capstone Researcher</h3>
+      <p>"Impact of AI on Customer Experience in Retail Banking" — a mixed-methods study using surveys and interviews, supported by Python, R, Power BI, and NVivo.</p>
+    </div>
+    <div class="entry">
+      <div class="meta">2021–2023 · Tribhuvan University</div>
+      <h3>Master's Thesis Researcher</h3>
+      <p>Conducted graduate-level business research, moving from research design and evidence gathering through analysis and structured findings.</p>
+    </div>
+    <div class="entry">
+      <div class="meta">2020–2021 · Tribhuvan University</div>
+      <h3>Research Assistant, Faculty of Management</h3>
+      <p>Supported research work through organized inquiry, data handling, and academic coordination.</p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="sec-label">Education</div>
+    <h2>Business depth, strengthened by quantitative methods.</h2>
+    <div class="entry">
+      <div class="meta">Dec 2025 · GPA 3.93</div>
+      <h3>MS, Management Science &amp; Quantitative Methods</h3>
+      <p>Atlantis University · Miami, Florida</p>
+    </div>
+    <div class="entry">
+      <div class="meta">Graduate degree</div>
+      <h3>MS, Business Administration</h3>
+      <p>Tribhuvan University · Nepal</p>
+    </div>
+    <div class="entry">
+      <div class="meta">Aug 2020</div>
+      <h3>BS, Business Studies</h3>
+      <p>Tribhuvan University · Nepal</p>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section>
+    <div class="sec-label">Recognition</div>
+    <h2>Academic achievement.</h2>
+    <div class="entry">
+      <div class="meta">Winter 2025 · Atlantis University</div>
+      <h3>Academic Excellence Award</h3>
+      <p>Awarded in recognition of outstanding academic excellence during the Winter 2025 semester.</p>
+    </div>
+    <div class="entry">
+      <div class="meta">Dec 2025 · Miami, Florida</div>
+      <h3>Master in Business Administration, Business Intelligence and Analytics</h3>
+      <p>Atlantis University</p>
+    </div>
+    <div class="sec-label" style="margin-top:28px">Selected credentials</div>
+    <div class="cred">
+      <span>Google Data Analytics Capstone</span>
+      <span>SQL for Data Science · UC Davis</span>
+      <span>SQL Problem Solving · UC Davis</span>
+      <span>Business Analytics &amp; Process Management</span>
+      <span>Introduction to CRM with HubSpot</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="sec-label">Contact</div>
+    <h2>Let's turn business questions into clear, useful insight.</h2>
+    <p>For data analyst, business intelligence, and business analytics opportunities, get in touch.</p>
+    <div class="row">
+      <a class="btn" href="mailto:sitoulabarsha122@gmail.com">Send an email →</a>
+      <a class="btn btn-outline" href="Barsha_Sitoula_Resume.pdf" download>Download résumé ↓</a>
+    </div>
+    <div class="contact-lines">
+      Email: <a href="mailto:sitoulabarsha122@gmail.com">sitoulabarsha122@gmail.com</a><br>
+      Phone: (786) 778-2467<br>
+      LinkedIn: <a href="https://www.linkedin.com/in/barsha-sitoula-6b0111316/">linkedin.com/in/barsha-sitoula-6b0111316</a><br>
+      GitHub: <a href="https://github.com/Barsha2522">github.com/Barsha2522</a><br>
+      Based in: Miami, Florida
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">Barsha Sitoula · Miami, Florida · <a href="#top">Back to top ↑</a></div>
+</footer>
+
+</body>
+</html>
